@@ -1,0 +1,93 @@
+DevOps Jenkins CICD Pipeline (User: admin & D*******@**88) 
+
+Create jenkinsMaster, jenkinsTest and jenkinsProd 
+ 
+
+On jenkinsMaster install:  
+sudo apt-get update 
+sudo apt install ca-certificates 
+sudo apt-get install openjdk-11-jdk –y 
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add - 
+sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list' 
+sudo apt-get update 
+sudo apt-get install jenkins –y 
+sudo apt-get install docker.io -y 
+ 
+On jenkinsTest and jenkinsProd install: 
+sudo apt-get update 
+sudo apt-get install openjdk-11-jdk –y 
+sudo apt-get install docker.io -y 
+ 
+Configure “global security setting” in jenkinsMaster > Agents > TCP port for inbound agents (random). 
+
+Add Node > configure the access with ssh username and key. (for both jenkinsTest and jenkinsProd) 
+
+Fork https://github.com/sonierk/website || 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 
+
+Add ssh public key of the jenkinsMaster to the github ssh settings. 
+
+Git clone https://github.com/sonierk/website 
+
+Create a Dockerfile inside the website folder. 
+
+Make changes to master and develop branch and push to github(add webhook) 
+
+Test bother the develop and master branch on the jenkinsTest machine 
+ 
+Make changes to files and commit the file and push the commit the github and let git webhook trigger the job builds. 
+
+ 
+job1 – for building the develop branch on jenkinsTest VM 
+job2 – for build the master branch on jenkinsTest VM 
+job3 – for deploying the master branch build after job2 was stable. 
+
+###################################### 
+
+ DevOps K8s  
+
+2VM for cluster 
+
+1VM for client 
+
+ 
+
+https://github.com/qfitsolutions/k8s/blob/master/k8s-master  
+
+ 
+
+Your Kubernetes control-plane has initialized successfully! 
+
+To start using your cluster, you need to run the following as a regular user: 
+
+  mkdir -p $HOME/.kube 
+
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config 
+
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config 
+
+Alternatively, if you are the root user, you can run: 
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf 
+
+You should now deploy a pod network to the cluster. 
+
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at: 
+
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/ 
+
+Then you can join any number of worker nodes by running the following on each as root: 
+
+kubeadm join 172.31.8.224:6443 --token 5m1xho.dj9xy3jedi7dwmsj \ 
+
+--discovery-token-ca-cert-hash sha256:f58893d1f8d066f6cc81ff7b24485958a880e81bae5685ae4b99ef5883a6fe19 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+
+ 
