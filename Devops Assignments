@@ -22,7 +22,7 @@ Configure “global security setting” in jenkinsMaster > Agents > TCP port for
 
 Add Node > configure the access with ssh username and key. (for both jenkinsTest and jenkinsProd) 
 
-Fork https://github.com/sonierk/website || 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 
+Fork https://github.com/sonierk/website  
 
 Add ssh public key of the jenkinsMaster to the github ssh settings. 
 
